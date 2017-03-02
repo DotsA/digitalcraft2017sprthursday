@@ -1,0 +1,86 @@
+color bColor = color(255, 255, 255);
+ 
+int option = 1;
+
+int end = -440;
+int start = 550;
+
+int end2 = -440;
+int start2 = 600;
+
+
+void setup() {
+  size(600, 600);
+  //smooth();
+  //noFill();
+}
+
+void draw() {
+  {
+  background(bColor);
+}
+
+
+  if (option == 1) {
+    // Option 1: Lines
+   for (int i = start; i > end; i-=40){
+  line(600, i, 10, 15);
+}
+for (int i = start2; i > end2; i-=40){
+  line(-550, i, 500, 600);
+}
+  } 
+  
+start++;
+end++;
+ 
+if ( start > 400){
+start -= 40;
+end -= 40;
+}
+
+  else if (option == 2) {
+    // Option 2: Grid
+    for (int x = -100; x <= width - 100; x += 20) {
+      for (int y = -100; y <= height - 100; y+=20) {
+        rect(x, y, width/2, height/2);
+      }
+    }
+  } 
+  else if (option == 3) {
+    // Option 3: points
+    for (int x = 50; x <= width-50; x += 20) {
+      for (int y = 50; y <= height-50; y+=20) {
+        point(x, y);
+      }
+    }
+  } 
+  else if (option == 4) {
+    // Option 4: Overlapping Lines
+    for (int x = 50; x <= width-50; x += 20) {
+      for (int y = 50; y <= height-50; y+=20) {
+        line (x,y,40,40);
+      }
+    }
+  } 
+  else if (option == 5) {
+    // Option 5: Groups of five
+      for (int x = 50; x <= width-50; x += 5) {
+      for (int y = 50; y <= height-50; y+=20) {
+        line(x-5, y-5, x+5, y+5);
+        line(x+5, y-5, x-5, y+5);
+      }
+  }
+}
+
+  }
+
+
+void mousePressed() {
+  option++;
+  if (option > 5) option = 1;
+}
+
+void mouseMoved() {
+  bColor = color(random(255), random(255), random(255));
+}
